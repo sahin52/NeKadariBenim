@@ -1,10 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-
-const hisseler = {
-  "EBEBK": 160000000,
-  "ASELS": 1460000000,
-}
+import { hisseSenetSayilari } from './stockSenetSayilari';
 
 function App() {
   const [selectedCompany, setSelectedCompany] = useState('');
@@ -24,7 +20,7 @@ function App() {
     setLotCount(enteredLotCount);
 
     if (selectedCompany && !isNaN(enteredLotCount)) {
-      const totalLots = hisseler[selectedCompany];
+      const totalLots = hisseSenetSayilari[selectedCompany];
       const percentage = (enteredLotCount / totalLots) * 100;
       setOwnershipPercentage(percentage);
     }
@@ -48,7 +44,7 @@ function App() {
       {/* Dropdown menü ile şirket seçimi */}
       <select onChange={handleCompanyChange} value={selectedCompany}>
         <option value="">Bir şirket seçin</option>
-        {Object.keys(hisseler).map((company) => (
+        {Object.keys(hisseSenetSayilari).map((company) => (
           <option key={company} value={company}>
             {company}
           </option>
